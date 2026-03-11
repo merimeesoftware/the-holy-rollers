@@ -1,0 +1,47 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title = "Thank You!" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Thank you for contacting The Holy Roller Painting Co." />
+  <meta name="theme-color" content="#20242f" />
+  
+  <title>{title} | The Holy Roller Painting Co.</title>
+  
+  <link rel="icon" type="image/png" href="https://static.wixstatic.com/media/b2a22f_0dfe64966cb54d34801b80830b58890c~mv2.png/v1/fill/w_100,h_100,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b2a22f_0dfe64966cb54d34801b80830b58890c~mv2.png" />
+</head>
+<body class="font-sans antialiased bg-gray-50">
+  <div class="min-h-screen flex items-center justify-center px-4">
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center">
+      <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+        <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+      
+      <h1 class="text-3xl font-bold text-[#20242f] mb-4">
+        Thanks for submitting!
+      </h1>
+      
+      <p class="text-gray-600 mb-8">
+        Thank you for reaching out to The Holy Roller Painting Co. We'll get back to you within 24 hours.
+      </p>
+      
+      <a
+        href="/"
+        class="inline-block bg-[#116DFF] hover:bg-[#0a5acc] text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-200"
+      >
+        Back to Home
+      </a>
+    </div>
+  </div>
+</body>
+</html>

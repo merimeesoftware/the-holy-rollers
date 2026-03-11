@@ -1,0 +1,423 @@
+/**
+ * Holy Rollers Painting Co. - Design System Components
+ * Reusable UI components using Tailwind CSS
+ * 
+ * Import these components in your Astro/React/Vue files
+ */
+
+/* ============================================
+   BUTTON COMPONENTS
+   ============================================ */
+
+/**
+ * Primary Button
+ * Used for main CTAs and primary actions
+ */
+export const buttonPrimary = (attributes = {}) => {
+  const { href, onClick, children, className = '', ...props } = attributes;
+  
+  const baseClasses = 'btn btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-roboto-bold text-sm uppercase tracking-wider transition-all duration-300 hover:bg-primary-dark hover:shadow-primary focus:ring-primary active:scale-95';
+  
+  if (href) {
+    return `<a href="${href}" class="${baseClasses} ${className}">${children}</a>`;
+  }
+  
+  return `<button class="${baseClasses} ${className}" onclick="${onClick || ''}">${children}</button>`;
+};
+
+/**
+ * Secondary Button
+ * Used for secondary actions
+ */
+export const buttonSecondary = (attributes = {}) => {
+  const { href, onClick, children, className = '' } = attributes;
+  
+  const baseClasses = 'btn btn-secondary inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-roboto-bold text-sm uppercase tracking-wider transition-all duration-300 hover:bg-dark focus:ring-secondary active:scale-95';
+  
+  if (href) {
+    return `<a href="${href}" class="${baseClasses} ${className}">${children}</a>`;
+  }
+  
+  return `<button class="${baseClasses} ${className}">${children}</button>`;
+};
+
+/**
+ * Outline Button
+ * Used for tertiary actions or on dark backgrounds
+ */
+export const buttonOutline = (attributes = {}) => {
+  const { href, onClick, children, className = '' } = attributes;
+  
+  const baseClasses = 'btn btn-outline inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-roboto-bold text-sm uppercase tracking-wider transition-all duration-300 hover:bg-primary hover:text-white focus:ring-primary active:scale-95';
+  
+  if (href) {
+    return `<a href="${href}" class="${baseClasses} ${className}">${children}</a>`;
+  }
+  
+  return `<button class="${baseClasses} ${className}">${children}</button>`;
+};
+
+/**
+ * Ghost Button
+ * Used for subtle actions or in navigation
+ */
+export const buttonGhost = (attributes = {}) => {
+  const { href, onClick, children, className = '' } = attributes;
+  
+  const baseClasses = 'btn btn-ghost inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-roboto-bold text-sm uppercase tracking-wider transition-all duration-300 hover:bg-light focus:ring-light active:scale-95';
+  
+  if (href) {
+    return `<a href="${href}" class="${baseClasses} ${className}">${children}</a>`;
+  }
+  
+  return `<button class="${baseClasses} ${className}">${children}</button>`;
+};
+
+/* ============================================
+   CARD COMPONENTS
+   ============================================ */
+
+/**
+ * Standard Card
+ * Used for content containers
+ */
+export const card = (attributes = {}) => {
+  const { children, className = '', hover = true } = attributes;
+  
+  const hoverClasses = hover ? 'hover:shadow-xl hover:-translate-y-1' : '';
+  const baseClasses = `card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 ease-out ${hoverClasses}`;
+  
+  return `<div class="${baseClasses} ${className}">${children}</div>`;
+};
+
+/**
+ * Dark Card
+ * Used for content on light backgrounds
+ */
+export const cardDark = (attributes = {}) => {
+  const { children, className = '', hover = true } = attributes;
+  
+  const hoverClasses = hover ? 'hover:shadow-xl hover:-translate-y-1' : '';
+  const baseClasses = `card-dark bg-dark rounded-xl shadow-lg overflow-hidden transition-all duration-300 ease-out ${hoverClasses}`;
+  
+  return `<div class="${baseClasses} ${className}">${children}</div>`;
+};
+
+/**
+ * Glass Card
+ * Used for overlay content
+ */
+export const cardGlass = (attributes = {}) => {
+  const { children, className = '' } = attributes;
+  
+  const baseClasses = 'card-light bg-light-transparent backdrop-blur-sm rounded-xl shadow-md overflow-hidden transition-all duration-300 ease-out';
+  
+  return `<div class="${baseClasses} ${className}">${children}</div>`;
+};
+
+/* ============================================
+   INPUT COMPONENTS
+   ============================================ */
+
+/**
+ * Text Input
+ */
+export const input = (attributes = {}) => {
+  const { 
+    type = 'text', 
+    name, 
+    id, 
+    placeholder, 
+    value, 
+    required = false,
+    disabled = false,
+    className = '' 
+  } = attributes;
+  
+  const baseClasses = 'input w-full px-4 py-3 rounded-lg border border-light bg-white text-dark placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300';
+  
+  return `<input 
+    type="${type}" 
+    name="${name || ''}" 
+    id="${id || name || ''}" 
+    placeholder="${placeholder || ''}" 
+    value="${value || ''}"
+    ${required ? 'required' : ''}
+    ${disabled ? 'disabled' : ''}
+    class="${baseClasses} ${className}"
+  />`;
+};
+
+/**
+ * Textarea
+ */
+export const textarea = (attributes = {}) => {
+  const { 
+    name, 
+    id, 
+    placeholder, 
+    value, 
+    rows = 4,
+    required = false,
+    disabled = false,
+    className = '' 
+  } = attributes;
+  
+  const baseClasses = 'input w-full px-4 py-3 rounded-lg border border-light bg-white text-dark placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 resize-none';
+  
+  return `<textarea 
+    name="${name || ''}" 
+    id="${id || name || ''}" 
+    placeholder="${placeholder || ''}" 
+    rows="${rows}"
+    ${required ? 'required' : ''}
+    ${disabled ? 'disabled' : ''}
+    class="${baseClasses} ${className}"
+  >${value || ''}</textarea>`;
+};
+
+/**
+ * Select Dropdown
+ */
+export const select = (attributes = {}) => {
+  const { 
+    name, 
+    id, 
+    options = [],
+    placeholder = 'Select an option',
+    required = false,
+    disabled = false,
+    className = '' 
+  } = attributes;
+  
+  const baseClasses = 'input w-full px-4 py-3 rounded-lg border border-light bg-white text-dark focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300';
+  
+  const optionsHtml = placeholder 
+    ? `<option value="" disabled>${placeholder}</option>` 
+    : '';
+  
+  const optionsList = options.map(opt => 
+    `<option value="${opt.value}">${opt.label}</option>`
+  ).join('');
+  
+  return `<select 
+    name="${name || ''}" 
+    id="${id || name || ''}" 
+    ${required ? 'required' : ''}
+    ${disabled ? 'disabled' : ''}
+    class="${baseClasses} ${className}"
+  >${optionsHtml}${optionsList}</select>`;
+};
+
+/* ============================================
+   BADGE COMPONENTS
+   ============================================ */
+
+/**
+ * Badge
+ */
+export const badge = (attributes = {}) => {
+  const { children, variant = 'primary', className = '' } = attributes;
+  
+  const variants = {
+    primary: 'badge-primary bg-primary text-white',
+    secondary: 'badge-secondary bg-secondary text-white',
+    light: 'badge-light bg-light text-dark',
+    outline: 'badge-outline border border-current bg-transparent',
+    success: 'bg-green-500 text-white',
+    warning: 'bg-yellow-500 text-white',
+    danger: 'bg-red-500 text-white',
+    info: 'bg-blue-500 text-white',
+  };
+  
+  const baseClasses = `badge inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${variants[variant] || variants.primary}`;
+  
+  return `<span class="${baseClasses} ${className}">${children}</span>`;
+};
+
+/* ============================================
+   CONTAINER COMPONENTS
+   ============================================ */
+
+/**
+ * Section Container
+ */
+export const section = (attributes = {}) => {
+  const { children, size = 'default', className = '' } = attributes;
+  
+  const sizes = {
+    sm: 'py-8 md:py-12 px-4 sm:px-6 lg:px-8',
+    default: 'py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8',
+    lg: 'py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8',
+    xl: 'py-20 md:py-32 lg:py-40 px-4 sm:px-6 lg:px-8',
+    none: 'px-4 sm:px-6 lg:px-8',
+  };
+  
+  return `<section class="${sizes[size] || sizes.default} ${className}">${children}</section>`;
+};
+
+/**
+ * Container
+ */
+export const container = (attributes = {}) => {
+  const { children, size = 'lg', className = '' } = attributes;
+  
+  const sizes = {
+    sm: 'mx-auto px-4 sm:px-6 lg:px-8 max-w-sm',
+    md: 'mx-auto px-4 sm:px-6 lg:px-8 max-w-md',
+    lg: 'mx-auto px-4 sm:px-6 lg:px-8 max-w-lg',
+    xl: 'mx-auto px-4 sm:px-6 lg:px-8 max-w-xl',
+    '2xl': 'mx-auto px-4 sm:px-6 lg:px-8 max-w-2xl',
+    '3xl': 'mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl',
+    '4xl': 'mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl',
+    '5xl': 'mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl',
+    '6xl': 'mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl',
+    '7xl': 'mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl',
+    full: 'mx-auto px-4 sm:px-6 lg:px-8 max-w-full',
+  };
+  
+  return `<div class="${sizes[size] || sizes.lg} ${className}">${children}</div>`;
+};
+
+/* ============================================
+   TYPOGRAPHY COMPONENTS
+   ============================================ */
+
+/**
+ * Heading
+ */
+export const heading = (attributes = {}) => {
+  const { children, level = 'h2', className = '', ...props } = attributes;
+  
+  const levels = {
+    h1: 'text-4xl md:text-5xl lg:text-6xl font-montserrat font-bold leading-tight',
+    h2: 'text-3xl md:text-4xl lg:text-5xl font-montserrat font-bold leading-tight',
+    h3: 'text-2xl md:text-3xl lg:text-4xl font-montserrat font-semibold leading-tight',
+    h4: 'text-xl md:text-2xl font-montserrat font-semibold',
+    h5: 'text-lg md:text-xl font-montserrat font-medium',
+    h6: 'text-base md:text-lg font-montserrat font-medium',
+  };
+  
+  return `<${level} class="${levels[level]} ${className}" ${Object.entries(props).map(([k, v]) => `${k}="${v}"`).join(' ')}>${children}</${level}>`;
+};
+
+/**
+ * Lead Text
+ */
+export const lead = (attributes = {}) => {
+  const { children, className = '' } = attributes;
+  
+  return `<p class="text-lg md:text-xl text-secondary leading-relaxed ${className}">${children}</p>`;
+};
+
+/**
+ * Gradient Text
+ */
+export const gradientText = (attributes = {}) => {
+  const { children, className = '' } = attributes;
+  
+  return `<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-dark ${className}">${children}</span>`;
+};
+
+/* ============================================
+   UTILITY COMPONENTS
+   ============================================ */
+
+/**
+ * Divider
+ */
+export const divider = (attributes = {}) => {
+  const { className = '', vertical = false } = attributes;
+  
+  if (vertical) {
+    return `<div class="w-px h-full bg-light mx-4 ${className}"></div>`;
+  }
+  
+  return `<div class="w-full h-px bg-light my-8 ${className}"></div>`;
+};
+
+/**
+ * Overlay
+ */
+export const overlay = (attributes = {}) => {
+  const { className = '', variant = 'dark' } = attributes;
+  
+  const variants = {
+    dark: 'bg-dark/50',
+    light: 'bg-white/30',
+    gradient: 'bg-gradient-to-t from-dark/80 via-dark/40 to-transparent',
+    primary: 'bg-primary/50',
+  };
+  
+  return `<div class="absolute inset-0 ${variants[variant] || variants.dark} ${className}"></div>`;
+};
+
+/**
+ * Spacer
+ */
+export const spacer = (attributes = {}) => {
+  const { size = 'md', className = '' } = attributes;
+  
+  const sizes = {
+    xs: 'h-4',
+    sm: 'h-8',
+    md: 'h-12',
+    lg: 'h-16',
+    xl: 'h-24',
+    '2xl': 'h-32',
+    '3xl': 'h-48',
+  };
+  
+  return `<div class="${sizes[size] || sizes.md} ${className}"></div>`;
+};
+
+/**
+ * Visually Hidden (for accessibility)
+ */
+export const visuallyHidden = (attributes = {}) => {
+  const { children, className = '' } = attributes;
+  
+  return `<span class="sr-only ${className}">${children}</span>`;
+};
+
+/* ============================================
+   EXPORT ALL COMPONENTS AS OBJECT
+   ============================================ */
+
+export const components = {
+  // Buttons
+  buttonPrimary,
+  buttonSecondary,
+  buttonOutline,
+  buttonGhost,
+  
+  // Cards
+  card,
+  cardDark,
+  cardGlass,
+  
+  // Inputs
+  input,
+  textarea,
+  select,
+  
+  // Badges
+  badge,
+  
+  // Containers
+  section,
+  container,
+  
+  // Typography
+  heading,
+  lead,
+  gradientText,
+  
+  // Utilities
+  divider,
+  overlay,
+  spacer,
+  visuallyHidden,
+};
+
+export default components;

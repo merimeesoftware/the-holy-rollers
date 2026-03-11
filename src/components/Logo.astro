@@ -1,0 +1,26 @@
+---
+interface Props {
+  size?: 'small' | 'medium' | 'large';
+  className?: string;
+}
+
+const { size = 'medium', className = '' } = Astro.props;
+
+const sizeClasses = {
+  small: 'w-16 h-16',
+  medium: 'w-24 h-24',
+  large: 'w-32 h-32'
+};
+---
+
+<div class={`inline-block ${sizeClasses[size]} ${className}`}>
+  <a href="/" class="block w-full h-full">
+    <img 
+      src="https://static.wixstatic.com/media/b2a22f_0dfe64966cb54d34801b80830b58890c~mv2.png/v1/fill/w_100,h_100,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/b2a22f_0dfe64966cb54d34801b80830b58890c~mv2.png"
+      alt="Logo for the Holy Rollers in Strongsville Ohio"
+      class="w-full h-full object-contain"
+      width="100"
+      height="100"
+    />
+  </a>
+</div>

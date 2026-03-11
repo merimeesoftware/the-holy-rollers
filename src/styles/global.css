@@ -1,0 +1,780 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+/* Tailwind Imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   CSS CUSTOM PROPERTIES (Design Tokens)
+   ============================================ */
+@layer base {
+  :root {
+    /* Primary Colors */
+    --color-white: rgb(255, 255, 255);
+    --color-primary: rgb(17, 109, 255);
+    --color-black: rgb(0, 0, 0);
+    --color-primary-dark: rgb(0, 0, 238);
+    
+    /* Secondary Colors */
+    --color-accent: rgb(177, 182, 211);
+    --color-secondary: rgb(84, 89, 124);
+    --color-light: rgb(187, 196, 221);
+    --color-dark: rgb(32, 36, 47);
+    
+    /* Transparent Variants */
+    --color-light-transparent: rgba(187, 196, 221, 0.9);
+    --color-dark-transparent: rgba(32, 36, 47, 0);
+    
+    /* Semantic Colors */
+    --color-background: var(--color-white);
+    --color-text: var(--color-dark);
+    --color-text-muted: var(--color-secondary);
+    
+    /* Spacing Scale */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+    --spacing-4xl: 6rem;
+    
+    /* Border Radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-2xl: 1.5rem;
+    --radius-full: 9999px;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(32, 36, 47, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(32, 36, 47, 0.1), 0 2px 4px -1px rgba(32, 36, 47, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(32, 36, 47, 0.1), 0 4px 6px -2px rgba(32, 36, 47, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(32, 36, 47, 0.1), 0 10px 10px -5px rgba(32, 36, 47, 0.04);
+    --shadow-primary: 0 4px 14px 0 rgba(17, 109, 255, 0.39);
+    
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-base: 300ms ease;
+    --transition-slow: 500ms ease;
+    
+    /* Container Widths */
+    --container-sm: 640px;
+    --container-md: 768px;
+    --container-lg: 1024px;
+    --container-xl: 1280px;
+    --container-2xl: 1536px;
+  }
+
+  /* ============================================
+     DARK MODE CSS VARIABLES
+     ============================================ */
+  .dark {
+    --color-background: var(--color-dark);
+    --color-text: var(--color-white);
+    --color-text-muted: var(--color-light);
+  }
+}
+
+/* ============================================
+   BASE RESET & TYPOGRAPHY
+   ============================================ */
+@layer base {
+  /* Modern Box Sizing */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* Reset Margins */
+  html,
+  body,
+  h1, h2, h3, h4, h5, h6,
+  p, ol, ul, li,
+  figure, figcaption,
+  blockquote, dl, dd {
+    margin: 0;
+    padding: 0;
+  }
+
+  /* HTML Defaults */
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Body Defaults */
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Typography Scale */
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-montserrat font-bold leading-tight;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-montserrat font-bold leading-tight;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl font-montserrat font-semibold leading-tight;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl font-montserrat font-semibold;
+  }
+
+  h5 {
+    @apply text-lg md:text-xl font-montserrat font-medium;
+  }
+
+  h6 {
+    @apply text-base md:text-lg font-montserrat font-medium;
+  }
+
+  /* Paragraph */
+  p {
+    @apply mb-4;
+  }
+
+  /* Links */
+  a {
+    @apply text-primary hover:text-primary-dark transition-colors duration-300;
+    text-decoration: none;
+  }
+
+  /* Lists */
+  ol, ul {
+    list-style: none;
+  }
+
+  /* Images */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Form Elements */
+  input, textarea, button, select {
+    font: inherit;
+    color: inherit;
+  }
+
+  /* Remove default button styles */
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* Remove default table styles */
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+}
+
+/* ============================================
+   COMPONENT STYLES
+   ============================================ */
+@layer components {
+  /* ---------- Button Components ---------- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-roboto-bold text-sm uppercase tracking-wider;
+    @apply transition-all duration-300 ease-out;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white;
+    @apply hover:bg-primary-dark hover:shadow-primary;
+    @apply focus:ring-primary;
+    @apply active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white;
+    @apply hover:bg-dark;
+    @apply focus:ring-secondary;
+    @apply active:scale-95;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary bg-transparent;
+    @apply hover:bg-primary hover:text-white;
+    @apply focus:ring-primary;
+    @apply active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply text-dark bg-transparent;
+    @apply hover:bg-light;
+    @apply focus:ring-light;
+    @apply active:scale-95;
+  }
+
+  .btn-white {
+    @apply bg-white text-dark;
+    @apply hover:bg-light;
+    @apply focus:ring-white;
+    @apply active:scale-95;
+  }
+
+  /* ---------- Container Utilities ---------- */
+  .container-sm {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: var(--container-sm);
+  }
+
+  .container-md {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: var(--container-md);
+  }
+
+  .container-lg {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: var(--container-lg);
+  }
+
+  .container-xl {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: var(--container-xl);
+  }
+
+  .container-narrow {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 1024px;
+  }
+
+  .container-wide {
+    @apply mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 1280px;
+  }
+
+  /* ---------- Section Utilities ---------- */
+  .section {
+    @apply py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-sm {
+    @apply py-8 md:py-12 px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-lg {
+    @apply py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-xl {
+    @apply py-20 md:py-32 lg:py-40 px-4 sm:px-6 lg:px-8;
+  }
+
+  /* ---------- Card Components ---------- */
+  .card {
+    @apply bg-white rounded-xl shadow-md overflow-hidden;
+    @apply transition-all duration-300 ease-out;
+    @apply hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .card-dark {
+    @apply bg-dark rounded-xl shadow-lg overflow-hidden;
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .card-light {
+    @apply bg-light-transparent backdrop-blur-sm rounded-xl shadow-md overflow-hidden;
+    @apply transition-all duration-300 ease-out;
+  }
+
+  /* ---------- Input Components ---------- */
+  .input {
+    @apply w-full px-4 py-3 rounded-lg border border-light bg-white text-dark;
+    @apply placeholder:text-secondary;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+    @apply transition-all duration-300;
+  }
+
+  .input-dark {
+    @apply w-full px-4 py-3 rounded-lg border border-dark bg-dark text-white;
+    @apply placeholder:text-light;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+    @apply transition-all duration-300;
+  }
+
+  /* ---------- Text Utilities ---------- */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-dark;
+  }
+
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(32, 36, 47, 0.3);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(32, 36, 47, 0.4);
+  }
+
+  /* ---------- Background Utilities ---------- */
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  }
+
+  .bg-gradient-dark {
+    background: linear-gradient(to bottom, var(--color-dark) 0%, var(--color-dark-transparent) 100%);
+  }
+
+  .bg-gradient-overlay {
+    background: linear-gradient(to right, rgba(32, 36, 47, 0.9), rgba(32, 36, 47, 0.7));
+  }
+
+  .bg-pattern {
+    background-image: 
+      radial-gradient(circle at 25% 25%, var(--color-light) 1px, transparent 1px),
+      radial-gradient(circle at 75% 75%, var(--color-light) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+
+  /* ---------- Overlay Utilities ---------- */
+  .overlay {
+    @apply absolute inset-0 bg-dark/50;
+  }
+
+  .overlay-light {
+    @apply absolute inset-0 bg-white/30;
+  }
+
+  .overlay-gradient {
+    @apply absolute inset-0 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent;
+  }
+
+  /* ---------- Divider Utilities ---------- */
+  .divider {
+    @apply w-full h-px bg-light my-8;
+  }
+
+  .divider-vertical {
+    @apply w-px h-full bg-light mx-4;
+  }
+
+  /* ---------- Badge Components ---------- */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .badge-primary {
+    @apply bg-primary text-white;
+  }
+
+  .badge-secondary {
+    @apply bg-secondary text-white;
+  }
+
+  .badge-light {
+    @apply bg-light text-dark;
+  }
+
+  .badge-outline {
+    @apply border border-current bg-transparent;
+  }
+}
+
+/* ============================================
+   ANIMATION & TRANSITION UTILITIES
+   ============================================ */
+@layer utilities {
+  /* ---------- Animation Keyframes ---------- */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(-5%);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateY(0);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* ---------- Animation Classes ---------- */
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-fadeInDown {
+    animation: fadeInDown 0.6s ease-out forwards;
+  }
+
+  .animate-fadeInLeft {
+    animation: fadeInLeft 0.6s ease-out forwards;
+  }
+
+  .animate-fadeInRight {
+    animation: fadeInRight 0.6s ease-out forwards;
+  }
+
+  .animate-slideInUp {
+    animation: slideInUp 0.5s ease-out forwards;
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+
+  .animate-bounce {
+    animation: bounce 1s infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      var(--color-light) 0%,
+      var(--color-white) 50%,
+      var(--color-light) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* ---------- Animation Delays ---------- */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-600 { animation-delay: 600ms; }
+  .delay-700 { animation-delay: 700ms; }
+  .delay-800 { animation-delay: 800ms; }
+
+  /* ---------- Transition Utilities ---------- */
+  .transition-base {
+    transition: all var(--transition-base);
+  }
+
+  .transition-fast {
+    transition: all var(--transition-fast);
+  }
+
+  .transition-slow {
+    transition: all var(--transition-slow);
+  }
+
+  .transition-colors {
+    transition: color var(--transition-base), background-color var(--transition-base), border-color var(--transition-base);
+  }
+
+  .transition-transform {
+    transition: transform var(--transition-base);
+  }
+
+  .transition-opacity {
+    transition: opacity var(--transition-base);
+  }
+
+  .transition-shadow {
+    transition: box-shadow var(--transition-base);
+  }
+
+  /* ---------- Hover Effects ---------- */
+  .hover-lift {
+    @apply transition-transform duration-300;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-300;
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  .hover-glow {
+    @apply transition-shadow duration-300;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(17, 109, 255, 0.4);
+  }
+
+  /* ---------- Focus States ---------- */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+
+  .focus-ring-light {
+    @apply focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-dark;
+  }
+
+  /* ---------- Screen Reader Only ---------- */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* ---------- Custom Scrollbar ---------- */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-light) var(--color-white);
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: var(--color-white);
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: var(--color-light);
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: var(--color-secondary);
+  }
+
+  /* ---------- Selection Colors ---------- */
+  ::selection {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  /* ---------- Aspect Ratio Utilities ---------- */
+  .aspect-portrait {
+    aspect-ratio: 3/4;
+  }
+
+  .aspect-landscape {
+    aspect-ratio: 4/3;
+  }
+
+  .aspect-square {
+    aspect-ratio: 1/1;
+  }
+
+  .aspect-video {
+    aspect-ratio: 16/9;
+  }
+
+  /* ---------- Z-Index Scale ---------- */
+  .z-dropdown { z-index: 1000; }
+  .z-sticky { z-index: 1020; }
+  .z-fixed { z-index: 1030; }
+  .z-modal-backdrop { z-index: 1040; }
+  .z-modal { z-index: 1050; }
+  .z-popover { z-index: 1060; }
+  .z-tooltip { z-index: 1070; }
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINT UTILITIES
+   ============================================ */
+/* These are additional utilities for responsive design */
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Responsive text alignment */
+@layer utilities {
+  .text-left { text-align: left; }
+  .text-center { text-align: center; }
+  .text-right { text-align: right; }
+
+  @media (min-width: 640px) {
+    .sm\:text-left { text-align: left; }
+    .sm\:text-center { text-align: center; }
+    .sm\:text-right { text-align: right; }
+  }
+
+  @media (min-width: 768px) {
+    .md\:text-left { text-align: left; }
+    .md\:text-center { text-align: center; }
+    .md\:text-right { text-align: right; }
+  }
+
+  @media (min-width: 1024px) {
+    .lg\:text-left { text-align: left; }
+    .lg\:text-center { text-align: center; }
+    .lg\:text-right { text-align: right; }
+  }
+
+  @media (min-width: 1280px) {
+    .xl\:text-left { text-align: left; }
+    .xl\:text-center { text-align: center; }
+    .xl\:text-right { text-align: right; }
+  }
+}
+
+/* ============================================
+   DARK MODE STYLES
+   ============================================ */
+@layer base {
+  .dark body {
+    @apply bg-dark text-white;
+  }
+
+  .dark .card {
+    @apply bg-dark-100;
+  }
+
+  .dark .input {
+    @apply bg-dark-100 border-dark-200 text-white;
+    @apply placeholder:text-light;
+  }
+
+  .dark .btn-ghost {
+    @apply text-white hover:bg-dark-200;
+  }
+
+  .dark .divider {
+    @apply bg-dark-200;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  img {
+    page-break-inside: avoid;
+  }
+
+  @page {
+    margin: 2cm;
+  }
+}

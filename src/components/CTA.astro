@@ -1,0 +1,93 @@
+---
+export interface Feature {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface Props {
+  title?: string;
+  features?: Feature[];
+  ctaText?: string;
+  ctaLink?: string;
+  phoneNumber?: string;
+}
+
+const {
+  title = "Why Choose Holy Rollers?",
+  features = [
+    {
+      title: "True Craftsmanship",
+      description: "We take pride in our painting. After years of experience we can confidently say our painting is an art perfected.",
+      icon: `<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>`
+    },
+    {
+      title: "Quality Paint",
+      description: "We use only the highest quality paint for the job. Years of experience have taught us what to use and where.",
+      icon: `<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>`
+    },
+    {
+      title: "Fair Pricing",
+      description: "Our work is top notch and our pricing is fair. Get a Free estimate and you'll understand.",
+      icon: `<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`
+    }
+  ],
+  ctaText = "Get a Free Estimate",
+  ctaLink = "#contact",
+  phoneNumber = "440-623-5336"
+} = Astro.props;
+---
+
+<section class="py-20 bg-gradient-to-br from-[#116DFF] to-[#0a5acc] relative overflow-hidden">
+  <!-- Decorative elements -->
+  <div class="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full translate-x-1/2 translate-y-1/2"></div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+        {title}
+      </h2>
+      <div class="w-24 h-1 bg-white/50 mx-auto rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+      {features.map((feature) => (
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-colors duration-300">
+          <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center text-[#116DFF] mx-auto mb-6">
+            <Fragment set:html={feature.icon} />
+          </div>
+          
+          <h3 class="text-xl font-bold text-white mb-4">
+            {feature.title}
+          </h3>
+          
+          <p class="text-white/80 leading-relaxed">
+            {feature.description}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center">
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a
+          href={ctaLink}
+          class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-[#116DFF] bg-white hover:bg-gray-100 rounded-lg transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
+        >
+          {ctaText}
+        </a>
+        
+        <a
+          href={`tel:${phoneNumber.replace(/\D/g, '')}`}
+          class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white border-2 border-white hover:bg-white hover:text-[#116DFF] rounded-lg transition-all duration-300"
+        >
+          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20.44 16.91c-.35.79-1.03 1.4-1.87 1.66-1.18.37-2.42.22-3.49-.46l-.91-.58c-.79-.5-1.61-.88-2.46-1.14-.53-.16-1.09-.08-1.59.21l-1.42.83c-.83.49-1.82.49-2.65 0l-.83-.83c-.49-.49-.49-1.28 0-1.77l.83-1.42c.29-.5.37-1.06.21-1.59-.26-.85-.64-1.67-1.14-2.46l-.58-.91c-.68-1.07-.83-2.31-.46-3.49.26-.84.87-1.52 1.66-1.87l1.18-.37c.79-.25 1.43-.02 1.92.49l.83.83c.49.49.74 1.17.49 1.96-.18.56.02 1.17.49 1.64l.91 1.18c.08.11.18.2.29.26l.79.49c.17.11.31.26.4.44l.49.83c.14.24.14.53 0 .77l-.37.74c-.11.22-.11.49 0 .71l.58 1.18c.18.37.55.58.94.58l.83-.37c.39-.18.79-.09 1.14.23l1.42 1.18c.62.52.62 1.51 0 2.03l-.83 1.42c-.35.32-.54.8-.54 1.31v1.18c0 .87.7 1.57 1.57 1.57h.37c.51 0 .99-.22 1.31-.54l1.42-1.42c.32-.35.41-.75.23-1.14l-.37-.83c-.11-.22-.08-.47.08-.65l.49-.79c.18-.29.26-.63.23-.98l-.08-1.13c-.03-.41.14-.81.46-1.1l.83-.83c.51-.49.74-1.17.49-1.92l-.37-1.18z"/>
+          </svg>
+          Call Now
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

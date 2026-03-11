@@ -1,0 +1,213 @@
+---
+export interface PortfolioItem {
+  src: string;
+  alt: string;
+  title?: string;
+}
+
+export interface Props {
+  title?: string;
+  items?: PortfolioItem[];
+}
+
+const {
+  title = "Portfolio",
+  items = [
+    {
+      src: "https://static.wixstatic.com/media/b2a22f_8a117e3e9d374015aea3eb06681ead71~mv2.jpg/v1/fill/w_485,h_644,q_90,enc_avif,quality_auto/b2a22f_8a117e3e9d374015aea3eb06681ead71~mv2.jpg",
+      alt: "PXL_20221005_231223973.jpg",
+      title: "Exterior Painting"
+    },
+    {
+      src: "https://static.wixstatic.com/media/b2a22f_2b6d12104d9f4befaa26e96741a42a73~mv2.jpg/v1/fill/w_485,h_644,q_90,enc_avif,quality_auto/b2a22f_2b6d12104d9f4befaa26e96741a42a73~mv2.jpg",
+      alt: "PXL_20221006_215914325.jpg",
+      title: "Residential Exterior"
+    },
+    {
+      src: "https://static.wixstatic.com/media/b2a22f_4e0524f31e274a31918934510022e7eb~mv2.jpg/v1/fill/w_485,h_644,q_90,enc_avif,quality_auto/b2a22f_4e0524f31e274a31918934510022e7eb~mv2.jpg",
+      alt: "PXL_20221003_202710373.jpg",
+      title: "Interior Detail"
+    },
+    {
+      src: "https://static.wixstatic.com/media/b2a22f_076472ae859a4437b507734bc5e6368c~mv2.jpg/v1/fill/w_485,h_644,q_90,enc_avif,quality_auto/b2a22f_076472ae859a4437b507734bc5e6368c~mv2.jpg",
+      alt: "PXL_20221003_202652259.jpg",
+      title: "Wall Finishing"
+    },
+    {
+      src: "https://static.wixstatic.com/media/b2a22f_5bc70220baba4547abf0d65a998215d5~mv2.jpg/v1/fill/w_485,h_644,q_90,enc_avif,quality_auto/b2a22f_5bc70220baba4547abf0d65a998215d5~mv2.jpg",
+      alt: "PXL_20221003_202655427.jpg",
+      title: "Interior Project"
+    },
+    {
+      src: "https://static.wixstatic.com/media/b2a22f_3f69904390ce4c3bae03ecf352b56af6~mv2.jpg/v1/fill/w_485,h_644,q_90,enc_avif,quality_auto/b2a22f_3f69904390ce4c3bae03ecf352b56af6~mv2.jpg",
+      alt: "PXL_20220811_172351686.jpg",
+      title: "Deck Restoration"
+    },
+    {
+      src: "https://static.wixstatic.com/media/b2a22f_a3c338f3b4c145d4a070eca1227553eb~mv2.jpg/v1/fill/w_485,h_644,q_90,enc_avif,quality_auto/b2a22f_a3c338f3b4c145d4a070eca1227553eb~mv2.jpg",
+      alt: "PXL_20220915_190207678.jpg",
+      title: "Exterior Siding"
+    },
+    {
+      src: "https://static.wixstatic.com/media/b2a22f_b1a30bbb92d6438ba4d242759a5b80f2~mv2.jpg/v1/fill/w_485,h_644,q_90,enc_avif,quality_auto/b2a22f_b1a30bbb92d6438ba4d242759a5b80f2~mv2.jpg",
+      alt: "PXL_20220818_204247446.jpg",
+      title: "Interior Walls"
+    },
+    {
+      src: "https://static.wixstatic.com/media/b2a22f_9112bbcd7f5c442787fe2dc5179362ac~mv2.jpg/v1/fill/w_485,h_644,q_90,enc_avif,quality_auto/b2a22f_9112bbcd7f5c442787fe2dc5179362ac~mv2.jpg",
+      alt: "PXL_20220817_153341879.jpg",
+      title: "Commercial Work"
+    },
+    {
+      src: "https://static.wixstatic.com/media/b2a22f_e2e9f5afa1814d0aad69b363bb364d1d~mv2.jpg/v1/fill/w_485,h_644,q_90,enc_avif,quality_auto/b2a22f_e2e9f5afa1814d0aad69b363bb364d1d~mv2.jpg",
+      alt: "PXL_20220808_201421255.jpg",
+      title: "Trim & Detail"
+    },
+    {
+      src: "https://static.wixstatic.com/media/b2a22f_71c0fb0234724d67b3739ed110d8ddac~mv2.jpg/v1/fill/w_477,h_633,q_90,enc_avif,quality_auto/b2a22f_71c0fb0234724d67b3739ed110d8ddac~mv2.jpg",
+      alt: "PXL_20220810_155807133.jpg",
+      title: "Full Interior"
+    },
+    {
+      src: "https://static.wixstatic.com/media/b2a22f_7e6fffc94601444588f6b1d07e047061~mv2.jpg/v1/fill/w_485,h_644,q_90,enc_avif,quality_auto/b2a22f_7e6fffc94601444588f6b1d07e047061~mv2.jpg",
+      alt: "PXL_20220808_195747325.jpg",
+      title: "Exterior Complete"
+    },
+    {
+      src: "https://static.wixstatic.com/media/b2a22f_a65e7da55e414ef48982f990ea403135~mv2.jpg/v1/fill/w_485,h_644,q_90,enc_avif,quality_auto/b2a22f_a65e7da55e414ef48982f990ea403135~mv2.jpg",
+      alt: "PXL_20220811_151338396.jpg",
+      title: "Kitchen Walls"
+    },
+    {
+      src: "https://static.wixstatic.com/media/b2a22f_0b94cc736d284ae5987729ba4c3c9ce3~mv2.jpg/v1/fill/w_484,h_645,q_90,enc_avif,quality_auto/b2a22f_0b94cc736d284ae5987729ba4c3c9ce3~mv2.jpg",
+      alt: "IMG_20200909_090055199.jpg",
+      title: "Exterior Home"
+    },
+    {
+      src: "https://static.wixstatic.com/media/b2a22f_953d654a872a4b5d9878b850d54e9458~mv2.jpg/v1/fill/w_486,h_645,q_90,enc_avif,quality_auto/b2a22f_953d654a872a4b5d9878b850d54e9458~mv2.jpg",
+      alt: "PXL_20220622_192115023.jpg",
+      title: "Siding Project"
+    },
+    {
+      src: "https://static.wixstatic.com/media/b2a22f_bb45adb88c1d4d7ba5dacc9f788487e3~mv2.jpg/v1/fill/w_485,h_647,q_90,enc_avif,quality_auto/b2a22f_bb45adb88c1d4d7ba5dacc9f788487e3~mv2.jpg",
+      alt: "IMG_20200601_125033694.jpg",
+      title: "Interior Refresh"
+    },
+    {
+      src: "https://static.wixstatic.com/media/b2a22f_d164b1e818184e1d99e257ce8d608657~mv2.jpg/v1/fill/w_485,h_647,q_90,enc_avif,quality_auto/b2a22f_d164b1e818184e1d99e257ce8d608657~mv2.jpg",
+      alt: "IMG_20200220_164824564.jpg",
+      title: "Exterior Paint"
+    },
+    {
+      src: "https://static.wixstatic.com/media/b2a22f_7ef7c18b15934accbff7d96a9346d98e~mv2.jpg/v1/fill/w_487,h_650,q_90,enc_avif,quality_auto/b2a22f_7ef7c18b15934accbff7d96a9346d98e~mv2.jpg",
+      alt: "IMG_20200417_112707004.jpg",
+      title: "Home Exterior"
+    },
+    {
+      src: "https://static.wixstatic.com/media/b2a22f_44c84cb295844a7e86ab3f55e5eab3d4~mv2.jpg/v1/fill/w_555,h_737,q_90,enc_avif,quality_auto/b2a22f_44c84cb295844a7e86ab3f55e5eab3d4~mv2.jpg",
+      alt: "PXL_20221019_132042003.jpg",
+      title: "Barn Painting"
+    },
+    {
+      src: "https://static.wixstatic.com/media/938930_928f6ca3f6724c818f555b28c27c3e35~mv2.jpg/v1/fill/w_486,h_860,q_90,enc_avif,quality_auto/938930_928f6ca3f6724c818f555b28c27c3e35~mv2.jpg",
+      alt: "Portfolio Image",
+      title: "Project Gallery"
+    }
+  ]
+} = Astro.props;
+---
+
+<section id="portfolio" class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#20242f] mb-4">
+        {title}
+      </h2>
+      <div class="w-24 h-1 bg-[#116DFF] mx-auto rounded-full"></div>
+      <p class="mt-4 text-[#54597c] max-w-2xl mx-auto">
+        Take a look at some of our recent painting projects. Each job is completed with the same attention to detail and quality craftsmanship.
+      </p>
+    </div>
+
+    <!-- Masonry-style grid -->
+    <div class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4" id="portfolio-grid">
+      {items.slice(0, 8).map((item, index) => (
+        <div class="break-inside-avoid group relative overflow-hidden rounded-lg shadow-md cursor-pointer">
+          <img
+            src={item.src}
+            alt={item.alt}
+            title={item.title}
+            class="w-full h-auto object-cover transform group-hover:scale-110 transition-transform duration-500"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+            <div class="p-4">
+              <p class="text-white font-semibold text-sm">{item.title}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Load More Button -->
+    <div class="text-center mt-12">
+      <button
+        type="button"
+        id="load-more-btn"
+        class="inline-flex items-center px-8 py-3 bg-[#20242f] text-white font-semibold rounded-md hover:bg-[#116DFF] transition-colors duration-300"
+        aria-label="Load more portfolio items"
+      >
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+        Load More
+      </button>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ items }}>
+  const allItems = items;
+  const initialCount = 8;
+  let currentCount = initialCount;
+  const grid = document.getElementById('portfolio-grid');
+  const loadMoreBtn = document.getElementById('load-more-btn');
+
+  function createPortfolioItem(item, index) {
+    const div = document.createElement('div');
+    div.className = 'break-inside-avoid group relative overflow-hidden rounded-lg shadow-md cursor-pointer';
+    div.innerHTML = `
+      <img
+        src="${item.src}"
+        alt="${item.alt}"
+        title="${item.title}"
+        class="w-full h-auto object-cover transform group-hover:scale-110 transition-transform duration-500"
+        loading="lazy"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+        <div class="p-4">
+          <p class="text-white font-semibold text-sm">${item.title}</p>
+        </div>
+      </div>
+    `;
+    return div;
+  }
+
+  if (loadMoreBtn && grid) {
+    loadMoreBtn.addEventListener('click', () => {
+      const nextItems = allItems.slice(currentCount, currentCount + 4);
+      
+      nextItems.forEach((item, index) => {
+        const newItem = createPortfolioItem(item, currentCount + index);
+        grid.appendChild(newItem);
+      });
+      
+      currentCount += nextItems.length;
+      
+      // Hide button if all items loaded
+      if (currentCount >= allItems.length) {
+        loadMoreBtn.style.display = 'none';
+      }
+    });
+  }
+</script>

@@ -1,0 +1,74 @@
+---
+export interface Service {
+  title: string;
+  description: string;
+  icon?: string;
+}
+
+export interface Props {
+  title?: string;
+  services?: Service[];
+}
+
+const {
+  title = "Our Services",
+  services = [
+    {
+      title: "Interior",
+      description: "Transform your indoor spaces with professional interior painting. We handle walls, ceilings, trim, and detailed work with precision and care."
+    },
+    {
+      title: "Exterior",
+      description: "Boost your curb appeal with our expert exterior painting services. We paint siding, stucco, brick, decks, and more with weather-resistant quality."
+    },
+    {
+      title: "Residential",
+      description: "Your home deserves the best. We treat every residential project with the attention and detail we'd give our own home."
+    },
+    {
+      title: "Commercial",
+      description: "Professional painting solutions for businesses. We work around your schedule to minimize disruption while delivering exceptional results."
+    }
+  ]
+} = Astro.props;
+
+const icons = [
+  // Interior icon
+  `<svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>`,
+  // Exterior icon
+  `<svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/></svg>`,
+  // Residential icon
+  `<svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>`,
+  // Commercial icon
+  `<svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>`
+];
+---
+
+<section id="services" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[#20242f] mb-4">
+        {title}
+      </h2>
+      <div class="w-24 h-1 bg-[#116DFF] mx-auto rounded-full"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {services.map((service, index) => (
+        <div class="group bg-white rounded-xl p-8 border-2 border-transparent hover:border-[#116DFF] shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+          <div class="w-16 h-16 bg-[#116DFF]/10 rounded-full flex items-center justify-center text-[#116DFF] mb-6 group-hover:bg-[#116DFF] group-hover:text-white transition-colors duration-300">
+            <Fragment set:html={icons[index]} />
+          </div>
+          
+          <h3 class="text-xl font-bold text-[#20242f] mb-4">
+            {service.title}
+          </h3>
+          
+          <p class="text-[#54597c] leading-relaxed">
+            {service.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
